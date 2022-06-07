@@ -20,17 +20,13 @@ def _fretran(file):
     t=[]
     for ii in range(0,len(dataci)):
         x=dataci[ii]
-        y=''
         yy=''
-        for i in range(0,8):
-            y+=x[i]
-        t.append(y)
-        for i in range(9,len(x)):
+        for i in range(0,len(x)):
             yy+=x[i]
         z.append(eval(yy))
 
     awords=z
-    at=t
+
 
 
     #翻译词条
@@ -59,7 +55,7 @@ def _fretran(file):
             while(i<len(lines2)):
                 if(lines2[i]=='330'):
                     k=[]
-                    f.write('%s\t%s\n' %(at[i2],k))
+                    f.write('%s\n' %(k))
                     i+=1
                     i2+=1
                 else:
@@ -67,7 +63,7 @@ def _fretran(file):
                     af2=[]
                     for j in range(0,len(awordsall)):
                         af2.append(lines2[i+j])
-                    f.write('%s\t%s\n' %(at[i2],af2))
+                    f.write('%s\n' %(af2))
                     i+=len(awordsall)
                     i2+=1
             ix+=iy
@@ -86,4 +82,4 @@ if __name__ == "__main__":
     for i in range(0,len(Filelist)):
         print(Filelist[i])
         x=_fretran(Filelist[i])
-        time.sleep(10)
+        time.sleep(5)
