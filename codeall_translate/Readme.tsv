@@ -1,0 +1,23 @@
+#本文件夹实现将词条翻译成中文的功能，其中fanyibaidu.py起核心作用，通过调用其中的baidufanyi()函数即可进行英-中翻译。（需要自己注册百度翻译ID，提供appid和secretKey信息）
+#translate_allwords.py是翻译所有词条的文件，需要先在路径下面建立两个文件夹，分别为/needtran-words和/aftertran-words.
+ /needtran-words中存放需要进行翻译的英文词条文件。（因为需要翻译的是UMLS词条，我在这里记录了每个词条的ID在前8位，所以在翻译的时候抽离了前八位。其他词典翻译可以进行相应变化）
+    C0000119	['11 Hydroxycorticosteroids', '11-Hydroxycorticosteroids']
+    C0000132	['15 Ketosteryl Oleate Hydrolase', '15-Ketosteryl Oleate Hydrolase', 'Hydrolase, 15-Ketosteryl Oleate']
+    C0000137	['15S RNA', 'RNA, 15S']
+ /aftertran-words中存放翻译完成的中文词条文件。（这里的前八位也是ID，与英文对应，如翻译其他字典，需要改动相应输出）
+#tiaoci.py写了一些可以在翻译之前进行的词条挑选的程序，但是实际上后面并没有用到，因为直接把所有的词条都给翻译就不需要挑选了
+#tici.py是将UMLS中的文件的词条、词条类型、词条来源依次挑选出来的文件
+#ticiMSH&translatebaidu.py是将UMLS中词条来源为MSH抽出来单独翻译的文件
+ 需要路径下面有文件夹/file，其中存放UMLS原文件
+ 输出到路径下的文件夹/resultMSH，其中有两种文件前缀名：带有MSHen-表示的是翻译之前的词条文件；带有MSHzh-表示的是翻译之后的词条文件
+#ticiPN&translatebaidu.py与ticiMSH&baidu.py类似，只不过挑选出来的是类型为PN的词条进行翻译
+#fre10_tici.py与fre10_translatebaidu.py是翻译过去十年词条频率大于10的词条的文件
+  fre10_tici.py是抽取词条频率大于10的文件，需要路径下有文件夹/needtran-words和/resultfre-last_10years，并且该文件夹中为前缀为'ALL-'的与/needtran-words文件夹下的词条文件一一对应的词条频率文件。
+   输出为'/resultfre2-10years/0countnumber.tsv'记录了词条总数
+        '/resultfre2-10years/Hfre-'记录了频率大于10的词条内容
+        '/resultfre2-10years/Cfre-'记录了频率大于10的词条一一对应的在原文件中的位置信息
+  fre10_translatebaidu.py是将抽取结果进行翻译的文件，需要路径下有文件夹/needtran-words和'/resultfre2-10years/Hfre-'
+   输出为'/resultfre2-10years/resultfre&baidu/Hfre-zh-'，一一对应着词频大于10的英文文件。
+
+
+        
